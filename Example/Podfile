@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'Rudder-Braze_Example' do
+  pod 'Rudder-Braze', :path => '../'
+
+  target 'Rudder-Braze_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
