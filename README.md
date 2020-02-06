@@ -1,5 +1,5 @@
-[![Version](https://img.shields.io/cocoapods/v/Rudder-Adjust.svg?style=flat)](https://cocoapods.org/pods/Rudder-Adjust)
-[![Platform](https://img.shields.io/cocoapods/p/Rudder-Adjust.svg?style=flat)](https://cocoapods.org/pods/Rudder-Adjust)
+[![Version](https://img.shields.io/cocoapods/v/Rudder-Braze.svg?style=flat)](https://cocoapods.org/pods/Rudder-Braze)
+[![Platform](https://img.shields.io/cocoapods/p/Rudder-Braze.svg?style=flat)](https://cocoapods.org/pods/Rudder-Braze)
 
 # What is Rudder?
 
@@ -11,13 +11,13 @@ Rudder is a platform for collecting, storing and routing customer event data to 
 
 Released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-## Getting Started with Adjust Integration of Android SDK
-1. Add [Adjust](https://www.adjust.com) as a destination in the [Dashboard](https://app.rudderlabs.com/) and define ```apiToken``` and ```eventMapping```
+## Getting Started with Braze Integration of Android SDK
+1. Add [Braze](https://www.adjust.com) as a destination in the [Dashboard](https://app.rudderlabs.com/) and define ```apiToken``` and ```eventMapping```
 
-2. Rudder-Adjust is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
+2. Rudder-Braze is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Rudder-Adjust'
+pod 'Rudder-Braze'
 ```
 
 ## Initialize ```RudderClient```
@@ -25,7 +25,7 @@ Put this code in your ```AppDelegate.m``` file under the method ```didFinishLaun
 ```
 RudderConfigBuilder *builder = [[RudderConfigBuilder alloc] init];
 [builder withEndPointUrl:YOUR_DATA_PLANE_URL];
-[builder withFactory:[RudderAdjustFactory instance]];
+[builder withFactory:[RudderBrazeFactory instance]];
 [RudderClient getInstance:YOUR_WRITE_KEY config:[builder build]];
 ```
 
