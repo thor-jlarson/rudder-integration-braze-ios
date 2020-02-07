@@ -18,5 +18,5 @@ Rudder is a platform for collecting, storing and routing customer event data to 
   s.source_files = 'Rudder-Braze/Classes/**/*'
 
   s.dependency 'RudderSDKCore'
-  s.dependency 'Braze', '~> 4.17.2'
+  s.dependency 'Appboy-iOS-SDK'
 end

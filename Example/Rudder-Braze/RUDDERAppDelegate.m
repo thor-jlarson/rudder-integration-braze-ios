@@ -1,6 +1,6 @@
 //
 //  RUDDERAppDelegate.m
-//  Rudder-Adjust
+//  Rudder-Braze
 //
 //  Created by arnab on 10/29/2019.
 //  Copyright (c) 2019 arnab. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "RUDDERAppDelegate.h"
 #import <RudderSDKCore/RudderClient.h>
-#import <RudderAdjustFactory.h>
+#import "RudderBrazeFactory.h"
 
 
 @implementation RUDDERAppDelegate
@@ -17,22 +17,22 @@
 {
     // Override point for customization after application launch.
     
-    NSString *writeKey = @"1WC1fQ3nIuFlZcKYCN2zLirPq4D";
-    NSString *endPointUrl = @"https://843fa4c8.ngrok.io";
+    NSString *writeKey = @"1XSzCFwHGLkH9ONqGUdBe0OhPIl";
+    NSString *endPointUrl = @"https://8cc72158.ngrok.io";
     
     RudderConfigBuilder *configBuilder = [[RudderConfigBuilder alloc] init];
     [configBuilder withEndPointUrl:endPointUrl];
     [configBuilder withLoglevel:4];
-    [configBuilder withFactory:[RudderAdjustFactory instance]];
+    [configBuilder withFactory:[RudderBrazeFactory instance]];
     RudderClient *rudderClient = [RudderClient getInstance:writeKey config:[configBuilder build]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSLog(@"processor started");
         
         usleep(10000000);
-        [rudderClient track:@"level_up"];
-        [rudderClient track:@"daily_rewards_claim"];
-        [rudderClient track:@"revenue"];
+        [rudderClient track:@"test_event0"];
+        [rudderClient track:@"test_event3"];
+        [rudderClient track:@"custom_purchase2"];
     });
     
     return YES;
