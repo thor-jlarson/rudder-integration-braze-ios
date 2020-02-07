@@ -346,15 +346,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Rudder-Braze_Example/Pods-Rudder-Braze_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Braze/Braze.framework",
+				"${BUILT_PRODUCTS_DIR}/Appboy-iOS-SDK/Appboy_iOS_SDK.framework",
 				"${BUILT_PRODUCTS_DIR}/Rudder-Braze/Rudder_Braze.framework",
 				"${BUILT_PRODUCTS_DIR}/RudderSDKCore/RudderSDKCore.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Braze.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Appboy_iOS_SDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rudder_Braze.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RudderSDKCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -13,10 +13,10 @@ Rudder is a platform for collecting, storing and routing customer event data to 
   s.source           = { :git => 'https://github.com/rudderlabs/rudder-integration-braze-ios.git' }
   s.platform         = :ios, "9.0"
 
-  s.ios.deployment_target = '8.0'
+
 
   s.source_files = 'Rudder-Braze/Classes/**/*'
 
   s.dependency 'RudderSDKCore'
-  s.dependency 'Appboy-iOS-SDK'
+  s.dependency 'Appboy-iOS-SDK', '~>3.21.0'
 end
