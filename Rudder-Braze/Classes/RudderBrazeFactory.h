@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) putLaunchOptions:(NSDictionary *)launchOpts;
 - (void) putRemoteNotification:(NSDictionary *)remoteNotif;
-
+- (void)resetRemoteNotification;
 
 - (NSDictionary *) getPushPayload ;
 @property NSDictionary *pushPayload;

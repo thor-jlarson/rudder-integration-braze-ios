@@ -286,7 +286,7 @@
                                            applicationState:UIApplicationStateInactive];
     }
     */
-    [[RudderBrazeFactory instance] putRemoteNotification:nil];
+    [[RudderBrazeFactory instance] resetRemoteNotification];
    
       
     return YES;

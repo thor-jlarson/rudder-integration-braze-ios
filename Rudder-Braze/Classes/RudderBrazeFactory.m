@@ -36,6 +36,10 @@ static RudderBrazeFactory *sharedInstance;
 - (void) putRemoteNotification:(NSDictionary *)userInfo {
   self.pushPayload = [userInfo copy];
 }
+
+- (void)resetRemoteNotification{
+    self.pushPayload = nil;
+}
  
 
 - (NSDictionary *) getPushPayload {
