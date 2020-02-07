@@ -19,7 +19,7 @@ static RudderBrazeFactory *sharedInstance;
 }
 
 - (nonnull NSString *)key {
-    return @"BRAZE";
+    return @"Braze";
 }
 
 - (id <RudderIntegration>) initiate: (NSDictionary*) config client:(RudderClient*) client rudderConfig:(nonnull RudderConfig *)rudderConfig{
