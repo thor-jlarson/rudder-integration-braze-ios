@@ -236,7 +236,7 @@
 }
 
 - (void)reset {
-    [self flush];
+    //[self flush];
     //NO BRAZE EQUIVALENT
     //[Adjust resetSessionPartnerParameters];
 }
