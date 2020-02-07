@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary *config;
 @property (nonatomic, strong) RudderClient *client; 
 
-- (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(RudderClient *)client  ;
+- (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(RudderClient *)client rudderConfig:(nonnull RudderConfig *)rudderConfig ;
 
 @end
 

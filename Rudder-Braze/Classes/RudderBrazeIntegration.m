@@ -11,7 +11,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(nonnull RudderClient *)client  {
+- (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(nonnull RudderClient *)client rudderConfig:(nonnull RudderConfig *)rudderConfig {
     if (self = [super init]) {
         
         self.config = config;
