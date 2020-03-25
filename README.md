@@ -11,8 +11,8 @@ Rudder is a platform for collecting, storing and routing customer event data to 
 
 Released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-## Getting Started with Braze Integration of Android SDK
-1. Add [Braze](https://www.adjust.com) as a destination in the [Dashboard](https://app.rudderlabs.com/) and define ```apiToken``` and ```eventMapping```
+## Getting Started with Braze Integration of iOS SDK
+1. Add [Braze](https://www.braze.com) as a destination in the [Dashboard](https://app.rudderlabs.com/) and define ```REST api key```, ```App Key``` and ```Data Center Instance```
 
 2. Rudder-Braze is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
 
@@ -31,8 +31,4 @@ RudderConfigBuilder *builder = [[RudderConfigBuilder alloc] init];
 
 ## Send Events
 Follow the steps from [Rudder iOS SDK](https://github.com/rudderlabs/rudder-sdk-ios)
-
-# Coming Soon
-1. Native platform SDK integration support
-2. More documentation
-3. More destination support
+ 
