@@ -16,7 +16,7 @@
 #import "Appboy-iOS-SDK/ABKUser.h"
 #import "Appboy-iOS-SDK/ABKAttributionData.h"
 #endif
-#import <RudderSDKCore/RudderLogger.h>
+#import <Rudder/RudderLogger.h>
  
 NS_ASSUME_NONNULL_BEGIN
 

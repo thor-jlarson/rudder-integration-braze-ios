@@ -7,7 +7,7 @@
 //
 
 #import "RUDDERAppDelegate.h"
-#import <RudderSDKCore/RudderClient.h>
+#import <Rudder/Rudder.h>
 #import "RudderBrazeFactory.h"
 
 

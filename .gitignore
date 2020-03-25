@@ -19,6 +19,10 @@ DerivedData
 *.hmap
 *.ipa
 
+Example/Rudder-Braze.xcworkspace
+Example/Pods
+Example/Podfile.lock
+
 # Bundler
 .bundle
 
