@@ -1,6 +1,3 @@
-[![Version](https://img.shields.io/cocoapods/v/Rudder-Braze.svg?style=flat)](https://cocoapods.org/pods/Rudder-Braze)
-[![Platform](https://img.shields.io/cocoapods/p/Rudder-Braze.svg?style=flat)](https://cocoapods.org/pods/Rudder-Braze)
-
 # What is Rudder?
 
 **Short answer:** 
@@ -17,7 +14,7 @@ Released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 2. Rudder-Braze is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Rudder-Braze'
+pod 'Rudder-Braze', '0.1.0-beta.1'
 ```
 
 ## Initialize ```RudderClient```
