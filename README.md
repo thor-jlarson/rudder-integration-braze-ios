@@ -1,6 +1,3 @@
-[![Version](https://img.shields.io/cocoapods/v/Rudder-Braze.svg?style=flat)](https://cocoapods.org/pods/Rudder-Braze)
-[![Platform](https://img.shields.io/cocoapods/p/Rudder-Braze.svg?style=flat)](https://cocoapods.org/pods/Rudder-Braze)
-
 # What is Rudder?
 
 **Short answer:** 
@@ -24,11 +21,13 @@ pod 'Rudder-Braze'
 Put this code in your ```AppDelegate.m``` file under the method ```didFinishLaunchingWithOptions```
 ```
 RudderConfigBuilder *builder = [[RudderConfigBuilder alloc] init];
-[builder withEndPointUrl:YOUR_DATA_PLANE_URL];
+[builder withDataPlaneUrl:<YOUR_DATA_PLANE_URL>];
 [builder withFactory:[RudderBrazeFactory instance]];
-[RudderClient getInstance:YOUR_WRITE_KEY config:[builder build]];
+[RudderClient getInstance:<YOUR_WRITE_KEY> config:[builder build]];
 ```
 
 ## Send Events
 Follow the steps from [Rudder iOS SDK](https://github.com/rudderlabs/rudder-sdk-ios)
  
+## Contact Us
+If you come across any issues while configuring or using RudderStack, please feel free to [contact us](https://rudderstack.com/contact/) or start a conversation on our [Discord](https://discordapp.com/invite/xNEdEGw) channel. We will be happy to help you.
