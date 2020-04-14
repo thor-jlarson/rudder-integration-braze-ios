@@ -18,11 +18,11 @@
     // Override point for customization after application launch.
     
     NSString *writeKey = @"1XSzCFwHGLkH9ONqGUdBe0OhPIl";
-    NSString *endPointUrl = @"https://8cc72158.ngrok.io";
+    NSString *dataPlaneUrl = @"https://8cc72158.ngrok.io";
     
     RudderConfigBuilder *configBuilder = [[RudderConfigBuilder alloc] init];
-    [configBuilder withEndPointUrl:endPointUrl];
-    [configBuilder withLoglevel:4];
+    [configBuilder withDataPlaneUrl:dataPlaneUrl];
+    [configBuilder withLoglevel:RudderLogLevelDebug];
     [configBuilder withFactory:[RudderBrazeFactory instance]];
     RudderClient *rudderClient = [RudderClient getInstance:writeKey config:[configBuilder build]];
     

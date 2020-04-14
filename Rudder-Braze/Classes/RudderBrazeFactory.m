@@ -38,7 +38,7 @@ static RudderBrazeFactory *sharedInstance;
 }
 
 - (void)resetRemoteNotification{
-    self.pushPayload = nil;
+    self.pushPayload = @{};
 }
  
 
