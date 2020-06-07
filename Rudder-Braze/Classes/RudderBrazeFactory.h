@@ -5,11 +5,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Rudder/RudderIntegrationFactory.h>
+#import <Rudder/Rudder.h>
 #import "RudderBrazeIntegration.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RudderBrazeFactory : NSObject<RudderIntegrationFactory>
+@interface RudderBrazeFactory : NSObject<RSIntegrationFactory>
 
 + (instancetype) instance;
 

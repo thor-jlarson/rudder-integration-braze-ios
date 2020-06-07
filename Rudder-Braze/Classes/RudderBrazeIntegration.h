@@ -5,8 +5,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RudderIntegration.h"
-#import "RudderClient.h"
+
 #if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
 #import <Appboy_iOS_SDK/AppboyKit.h>
 #import <Appboy_iOS_SDK/ABKUser.h>
@@ -16,16 +15,16 @@
 #import "Appboy-iOS-SDK/ABKUser.h"
 #import "Appboy-iOS-SDK/ABKAttributionData.h"
 #endif
-#import <Rudder/RudderLogger.h>
+#import <Rudder/Rudder.h>
  
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RudderBrazeIntegration : NSObject<RudderIntegration>
+@interface RudderBrazeIntegration : NSObject<RSIntegration>
 
 @property (nonatomic, strong) NSDictionary *config;
-@property (nonatomic, strong) RudderClient *client; 
+@property (nonatomic, strong) RSClient *client;
 
-- (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(RudderClient *)client rudderConfig:(nonnull RudderConfig *)rudderConfig ;
+- (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(RSClient *)client rudderConfig:(nonnull RSConfig *)rudderConfig ;
 
 @end
 

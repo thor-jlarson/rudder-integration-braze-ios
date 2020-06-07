@@ -22,7 +22,7 @@ static RudderBrazeFactory *sharedInstance;
     return @"Braze";
 }
 
-- (id <RudderIntegration>) initiate: (NSDictionary*) config client:(RudderClient*) client rudderConfig:(nonnull RudderConfig *)rudderConfig{
+- (id <RSIntegration>) initiate: (NSDictionary*) config client:(RSClient*) client rudderConfig:(nonnull RSConfig *)rudderConfig{
     return [[RudderBrazeIntegration alloc] initWithConfig:config withAnalytics:client rudderConfig: rudderConfig];
 }
 
