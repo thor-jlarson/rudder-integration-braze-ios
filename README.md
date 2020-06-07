@@ -20,10 +20,10 @@ pod 'Rudder-Braze', '0.1.3'
 ## Initialize ```RudderClient```
 Put this code in your ```AppDelegate.m``` file under the method ```didFinishLaunchingWithOptions```
 ```
-RudderConfigBuilder *builder = [[RudderConfigBuilder alloc] init];
-[builder withDataPlaneUrl:DATA_PLANE_URL];
-[builder withFactory:[RudderBrazeFactory instance]];
-[RudderClient getInstance:WRITE_KEY config:[builder build]];
+RSConfigBuilder *configBuilder = [[RSConfigBuilder alloc] init];
+[configBuilder withDataPlaneUrl:DATA_PLANE_URL];
+[configBuilder withFactory:[RudderBrazeFactory instance]];
+RSClient *rudderClient = [RSClient getInstance:WRITE_KEY config:[configBuilder build]];
 ```
 
 ## Send Events

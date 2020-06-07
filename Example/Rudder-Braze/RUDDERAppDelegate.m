@@ -17,14 +17,14 @@
 {
     // Override point for customization after application launch.
     
-    NSString *writeKey = @"1XSzCFwHGLkH9ONqGUdBe0OhPIl";
-    NSString *dataPlaneUrl = @"https://8cc72158.ngrok.io";
+    NSString *WRITE_KEY = @"1XSzCFwHGLkH9ONqGUdBe0OhPIl";
+    NSString *DATA_PLANE_URL = @"https://8cc72158.ngrok.io";
     
     RSConfigBuilder *configBuilder = [[RSConfigBuilder alloc] init];
-    [configBuilder withDataPlaneUrl:dataPlaneUrl];
+    [configBuilder withDataPlaneUrl:DATA_PLANE_URL];
     [configBuilder withLoglevel:RSLogLevelDebug];
     [configBuilder withFactory:[RudderBrazeFactory instance]];
-    RSClient *rudderClient = [RSClient getInstance:writeKey config:[configBuilder build]];
+    RSClient *rudderClient = [RSClient getInstance:WRITE_KEY config:[configBuilder build]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSLog(@"processor started");
