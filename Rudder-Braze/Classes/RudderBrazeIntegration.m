@@ -82,15 +82,6 @@
         }
         
         // look for externalIds first
-//        List<Map<String, Object>> externalIds = element.getContext().getExternalIds();
-//        String externalId = null;
-//        for (int index = 0; externalIds != null && index < externalIds.size(); index++) {
-//            Map<String, Object> externalIdMap = externalIds.get(index);
-//            String typeKey = (String) externalIdMap.get("type");
-//            if (typeKey != null && typeKey.equals(BRAZE_EXTERNAL_ID_KEY)) {
-//                externalId = (String) externalIdMap.get("id");
-//            }
-//        }
         NSArray* externalIds = message.context.externalIds;
         NSString *externalId = nil;
         for (NSDictionary* externalIdDict in externalIds) {
