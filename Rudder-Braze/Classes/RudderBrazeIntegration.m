@@ -13,7 +13,6 @@
 
 - (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(nonnull RSClient *)client rudderConfig:(nonnull RSConfig *)rudderConfig {
     if (self = [super init]) {
-        
         self.config = config;
         self.client = client;
                 
@@ -21,43 +20,44 @@
         if ( [apiToken length] == 0) {
           return nil;
         }
+        
         NSMutableDictionary *appboyOptions = [[NSMutableDictionary alloc] init];
         NSString *dataCenter = [config objectForKey:@"dataCenter"];
         if ((dataCenter && [dataCenter length] != 0)) {
             NSString *customEndpoint = [dataCenter stringByTrimmingCharactersInSet:
             [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            if([@"US-01" isEqualToString:customEndpoint])
+            if([@"US-01" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-01.braze.com";
-            else  if([@"US-02" isEqualToString:customEndpoint])
+            } else if([@"US-02" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-02.braze.com";
-            else  if([@"US-03" isEqualToString:customEndpoint])
+            } else if([@"US-03" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-03.braze.com";
-            else  if([@"US-04" isEqualToString:customEndpoint])
+            } else if([@"US-04" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-04.braze.com";
-            else  if([@"US-06" isEqualToString:customEndpoint])
+            } else if([@"US-06" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-06.braze.com";
-            else  if([@"US-08" isEqualToString:customEndpoint])
+            } else if([@"US-08" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-08.braze.com";
-            else  if([@"EU-01" isEqualToString:customEndpoint])
+            } else if([@"EU-01" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.fra-01.braze.eu";
-
+            }
         }
-      
-      if ([NSThread isMainThread]) {
-        [Appboy startWithApiKey:apiToken
-                  inApplication:[UIApplication sharedApplication]
-              withLaunchOptions:nil
-              withAppboyOptions:appboyOptions];
-        [RSLogger logInfo:@"[Braze startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]"];
-      } else {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-          [Appboy startWithApiKey:apiToken
-                    inApplication:[UIApplication sharedApplication]
-                withLaunchOptions:nil
-                withAppboyOptions:appboyOptions];
-          [RSLogger logInfo:@"[Braze startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]"];
-        });
-      }
+        
+        if ([NSThread isMainThread]) {
+            [Appboy startWithApiKey:apiToken
+                      inApplication:[UIApplication sharedApplication]
+                  withLaunchOptions:nil
+                  withAppboyOptions:appboyOptions];
+            [RSLogger logInfo:@"[Braze startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]"];
+        } else {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+              [Appboy startWithApiKey:apiToken
+                        inApplication:[UIApplication sharedApplication]
+                    withLaunchOptions:nil
+                    withAppboyOptions:appboyOptions];
+              [RSLogger logInfo:@"[Braze startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]"];
+            });
+        }
     }
     
     if ([Appboy sharedInstance] != nil) {
@@ -65,8 +65,6 @@
     } else {
       return nil;
     }
-    
-    
 }
 
 - (void)dump:(nonnull RSMessage *)message {
@@ -79,16 +77,36 @@
         }
         
         if ([message.context.traits[@"lastname"] isKindOfClass:[NSString class]]) {
-          [Appboy sharedInstance].user.lastName = (NSString *) message.context.traits[@"lastname"];
-           [RSLogger logInfo:@"Identify: Braze user lastname"];
+            [Appboy sharedInstance].user.lastName = (NSString *) message.context.traits[@"lastname"];
+            [RSLogger logInfo:@"Identify: Braze user lastname"];
         }
         
-        
-        if (message.userId != nil && [message.userId length] != 0) {
-          [[Appboy sharedInstance] changeUser:message.userId];
-            [RSLogger logInfo:@"Identify: Braze changeUser"];
+        // look for externalIds first
+//        List<Map<String, Object>> externalIds = element.getContext().getExternalIds();
+//        String externalId = null;
+//        for (int index = 0; externalIds != null && index < externalIds.size(); index++) {
+//            Map<String, Object> externalIdMap = externalIds.get(index);
+//            String typeKey = (String) externalIdMap.get("type");
+//            if (typeKey != null && typeKey.equals(BRAZE_EXTERNAL_ID_KEY)) {
+//                externalId = (String) externalIdMap.get("id");
+//            }
+//        }
+        NSArray* externalIds = message.context.externalIds;
+        NSString *externalId = nil;
+        for (NSDictionary* externalIdDict in externalIds) {
+            NSString *typeKey = externalIdDict[@"type"];
+            if (typeKey && [typeKey isEqualToString:RSBrazeExternalIdKey]) {
+                externalId = externalIdDict[@"id"];
+            }
         }
         
+        if (externalId && [externalId length] != 0) {
+            [[Appboy sharedInstance] changeUser:externalId];
+            [RSLogger logInfo:@"Identify: Braze changeUser with externalId"];
+        } else if (message.userId != nil && [message.userId length] != 0) {
+            [[Appboy sharedInstance] changeUser:message.userId];
+            [RSLogger logInfo:@"Identify: Braze changeUser with userId"];
+        }
         
         if ([message.context.traits[@"email"] isKindOfClass:[NSString class]]) {
           [Appboy sharedInstance].user.email = (NSString *)message.context.traits[@"email"];
