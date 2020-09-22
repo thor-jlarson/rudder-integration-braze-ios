@@ -10,6 +10,9 @@
 
 static RudderBrazeFactory *sharedInstance;
 
+NSString *const RSBrazeExternalIdKey = @"brazeExternalId";
+NSString *const RSBrazeKey = @"Braze";
+
 + (instancetype)instance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -19,7 +22,7 @@ static RudderBrazeFactory *sharedInstance;
 }
 
 - (nonnull NSString *)key {
-    return @"Braze";
+    return RSBrazeKey;
 }
 
 - (id <RSIntegration>) initiate: (NSDictionary*) config client:(RSClient*) client rudderConfig:(nonnull RSConfig *)rudderConfig{

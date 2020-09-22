@@ -17,23 +17,44 @@
 {
     // Override point for customization after application launch.
     
-    NSString *WRITE_KEY = @"1XSzCFwHGLkH9ONqGUdBe0OhPIl";
-    NSString *DATA_PLANE_URL = @"https://8cc72158.ngrok.io";
+    NSString *WRITE_KEY = @"1UsY362jONW4EOwaZX5MA6FX5Zt";
+    NSString *DATA_PLANE_URL = @"https://8e50d3caecbe.ngrok.io";
     
     RSConfigBuilder *configBuilder = [[RSConfigBuilder alloc] init];
     [configBuilder withDataPlaneUrl:DATA_PLANE_URL];
     [configBuilder withLoglevel:RSLogLevelDebug];
     [configBuilder withFactory:[RudderBrazeFactory instance]];
-    RSClient *rudderClient = [RSClient getInstance:WRITE_KEY config:[configBuilder build]];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"processor started");
-        
-        usleep(10000000);
-        [rudderClient track:@"test_event0"];
-        [rudderClient track:@"test_event3"];
-        [rudderClient track:@"custom_purchase2"];
-    });
+    [RSClient getInstance:WRITE_KEY config:[configBuilder build]];
+
+//    RSOption *identifyOptions = [[RSOption alloc] init];
+//                 [identifyOptions putExternalId:@"brazeExternalId" withId:@"sampleNEW123_braze_external_id_1"];
+//                 [identifyOptions putExternalId:@"braze_id" withId:@"some_braze_id_3_1"];
+//
+//    [[RSClient sharedInstance] identify:@"test_user_id_ios_1"
+//                                 traits:@{@"foo": @"bar",
+//                                       @"foo1": @"bar1",
+//                                       @"email": @"test_1@gmail.com"}
+//                                options:identifyOptions
+//    ];
+//
+//    [[RSClient sharedInstance] track:@"simple_track_event_1"];
+//
+//    [[RSClient sharedInstance] track:@"simple_track_with_props_1" properties:@{
+//         @"key_1" : @"value_1",
+//         @"key_2" : @"value_2"
+//    }];
+//
+//    [[RSClient sharedInstance] screen:@"Main_1" properties:@{@"prop_key" : @"prop_value"}];
+
+    [[RSClient sharedInstance] reset];
+    [[RSClient sharedInstance] identify: @"test_user_id_ios_2"
+                                 traits: @{
+                                     @"foo": @"bar",
+                                     @"foo1": @"bar1",
+                                     @"email": @"test_2@gmail.com"
+                                 }
+    ];
+    [[RSClient sharedInstance] track:@"simple_track_event_after_reset_2"];
     
     return YES;
 }

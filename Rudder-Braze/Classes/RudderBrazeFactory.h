@@ -11,14 +11,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RudderBrazeFactory : NSObject<RSIntegrationFactory>
 
+extern NSString *const RSBrazeExternalIdKey;
+
+@property NSDictionary *pushPayload;
+
 + (instancetype) instance;
 
 - (void) putLaunchOptions:(NSDictionary *)launchOpts;
 - (void) putRemoteNotification:(NSDictionary *)remoteNotif;
-- (void)resetRemoteNotification;
-
+- (void) resetRemoteNotification;
 - (NSDictionary *) getPushPayload ;
-@property NSDictionary *pushPayload;
+
 @end
 
 NS_ASSUME_NONNULL_END

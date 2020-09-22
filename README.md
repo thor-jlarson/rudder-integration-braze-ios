@@ -14,7 +14,7 @@ Released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 2. Rudder-Braze is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Rudder-Braze', '0.1.3'
+pod 'Rudder-Braze', '1.0.1'
 ```
 
 ## Initialize ```RSClient```
