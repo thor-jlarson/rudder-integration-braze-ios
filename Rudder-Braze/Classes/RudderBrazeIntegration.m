@@ -88,6 +88,7 @@
             NSString *typeKey = externalIdDict[@"type"];
             if (typeKey && [typeKey isEqualToString:RSBrazeExternalIdKey]) {
                 externalId = externalIdDict[@"id"];
+                break;
             }
         }
         
