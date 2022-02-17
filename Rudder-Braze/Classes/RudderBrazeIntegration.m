@@ -42,6 +42,8 @@
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-08.braze.com";
             } else if([@"EU-01" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.fra-01.braze.eu";
+            } else if([@"EU-02" isEqualToString:customEndpoint]) {
+                appboyOptions[ABKEndpointKey] = @"sdk.fra-02.braze.eu";
             }
         }
         
