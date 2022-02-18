@@ -34,12 +34,16 @@
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-03.braze.com";
             } else if([@"US-04" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-04.braze.com";
+            } else if([@"US-05" isEqualToString:customEndpoint]) {
+                appboyOptions[ABKEndpointKey] = @"sdk.iad-05.braze.com";
             } else if([@"US-06" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-06.braze.com";
             } else if([@"US-08" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.iad-08.braze.com";
             } else if([@"EU-01" isEqualToString:customEndpoint]) {
                 appboyOptions[ABKEndpointKey] = @"sdk.fra-01.braze.eu";
+            } else if([@"EU-02" isEqualToString:customEndpoint]) {
+                appboyOptions[ABKEndpointKey] = @"sdk.fra-02.braze.eu";
             }
         }
         
