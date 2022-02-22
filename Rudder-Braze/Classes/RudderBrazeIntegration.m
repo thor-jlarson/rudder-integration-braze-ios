@@ -202,46 +202,24 @@
         }
         
         NSDecimalNumber *revenue = [RudderBrazeIntegration revenueDecimal:message.properties withKey:@"revenue"];
-        if (revenue || [message.event isEqualToString:@"Order Completed"]) {
-          NSString *currency = @"USD";  //  USD is default
+        if (revenue) {
+          NSString *currency = @"USD";
+            //  USD is default
           if ([message.properties[@"currency"] isKindOfClass:[NSString class]] &&
-              [(NSString *)message.properties[@"currency"] length] == 3) {  //   ISO-4217 used for currency code
+              [(NSString *)message.properties[@"currency"] length] == 3) {
+              //   ISO-4217 used for currency code
             currency = (NSString *)message.properties[@"currency"];
           }
-            if (message.properties != nil) {
-              NSMutableDictionary *appboyProperties = [NSMutableDictionary dictionaryWithDictionary:message.properties];
-              appboyProperties[@"currency"] = nil;
-              appboyProperties[@"revenue"] = nil;
-              
-              if (appboyProperties[@"products"]) {
-                NSArray *products = [appboyProperties[@"products"] copy];
-                appboyProperties[@"products"] = nil;
 
-                for (NSDictionary *product in products) {
-                  NSMutableDictionary *productDictionary = [product mutableCopy];
-                  NSString *productId;
-                  if (productDictionary[@"productId"]) {
-                      productId = productDictionary[@"productId"];
-                  } else if (productDictionary[@"product_id"]) {
-                      productId = productDictionary[@"product_id"];
-                  }
-                  NSDecimalNumber *productRevenue = [RudderBrazeIntegration revenueDecimal:productDictionary withKey:@"price"];
-                  NSUInteger productQuantity = [productDictionary[@"quantity"] unsignedIntegerValue];
-                  productDictionary[@"productId"] = nil;
-                  productDictionary[@"product_id"] = nil;
-                  productDictionary[@"price"] = nil;
-                  productDictionary[@"quantity"] = nil;
-                  NSMutableDictionary *productProperties = [appboyProperties mutableCopy];
-                  [productProperties addEntriesFromDictionary:productDictionary];
-                  [[Appboy sharedInstance] logPurchase:productId inCurrency:currency atPrice:productRevenue withQuantity:productQuantity andProperties:productProperties];
-                }
-              } else {
-                [[Appboy sharedInstance] logPurchase:message.event inCurrency:currency atPrice:revenue withQuantity:1 andProperties:appboyProperties];
-              }
-            } else {
-              [[Appboy sharedInstance] logPurchase:message.event inCurrency:currency atPrice:revenue withQuantity:1];
-            }
-            [RSLogger logInfo:@" Braze logPurchase: inCurrency: atPrice: withQuantity: "];
+          if (message.properties != nil) {
+            NSMutableDictionary *appboyProperties = [NSMutableDictionary dictionaryWithDictionary:message.properties];
+            appboyProperties[@"currency"] = nil;
+            appboyProperties[@"revenue"] = nil;
+            [[Appboy sharedInstance] logPurchase:message.event inCurrency:currency atPrice:revenue withQuantity:1 andProperties:appboyProperties];
+          } else {
+            [[Appboy sharedInstance] logPurchase:message.event inCurrency:currency atPrice:revenue withQuantity:1];
+          }
+          [RSLogger logInfo:@" Braze logPurchase: inCurrency: atPrice: withQuantity: "];
         } else {
           [[Appboy sharedInstance] logCustomEvent:message.event withProperties:message.properties];
           [RSLogger logInfo:@"Brze logCustomEvent: withProperties: "];
