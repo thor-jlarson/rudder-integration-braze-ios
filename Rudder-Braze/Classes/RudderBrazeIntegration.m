@@ -210,7 +210,7 @@
               //   ISO-4217 used for currency code
             currency = (NSString *)message.properties[@"currency"];
           }
-          
+
           if (message.properties != nil) {
             NSMutableDictionary *appboyProperties = [NSMutableDictionary dictionaryWithDictionary:message.properties];
             appboyProperties[@"currency"] = nil;
@@ -245,7 +245,7 @@
 
 - (void)flush
 {
-  [[Appboy sharedInstance] flushDataAndProcessRequestQueue];
+  [[Appboy sharedInstance] requestImmediateDataFlush];
   [RSLogger logInfo: @"Braze flushDataAndProcessRequestQueue]"];
 }
 
