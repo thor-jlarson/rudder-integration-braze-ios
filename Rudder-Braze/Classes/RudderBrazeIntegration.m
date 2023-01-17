@@ -15,7 +15,7 @@
     if (self = [super init]) {
         self.config = config;
         self.client = client;
-        self.supportDedup = [config objectForKey:@"supportDedup"] ? YES : NO;
+        self.supportDedup = [[config objectForKey:@"supportDedup"] boolValue] ? YES : NO;
         NSString *apiToken = [config objectForKey:@"appKey"];
         if ( [apiToken length] == 0) {
           return nil;
