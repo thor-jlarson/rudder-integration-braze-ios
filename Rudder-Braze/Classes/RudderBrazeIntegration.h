@@ -29,7 +29,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RudderBrazeIntegration : NSObject<RSIntegration>
+typedef enum {
+    ConnectionModeHybrid,
+    ConnectionModeCloud,
+    ConnectionModeDevice
+} ConnectionMode;
+
+@interface RudderBrazeIntegration : NSObject<RSIntegration> {
+    ConnectionMode connectionMode;
+}
 
 @property (nonatomic, strong) NSDictionary *config;
 @property (nonatomic, strong) RSClient *client;

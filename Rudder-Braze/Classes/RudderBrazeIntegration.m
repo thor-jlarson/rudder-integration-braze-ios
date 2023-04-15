@@ -11,12 +11,16 @@
 
 #pragma mark - Initialization
 
+
+
 - (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(nonnull RSClient *)client rudderConfig:(nonnull RSConfig *)rudderConfig {
     if (self = [super init]) {
         self.config = config;
         self.client = client;
         self.supportDedup = [[config objectForKey:@"supportDedup"] boolValue] ? YES : NO;
         NSString *apiToken = [config objectForKey:@"appKey"];
+        connectionMode = [self getConnectionMode:config];
+        
         if ( [apiToken length] == 0) {
             return nil;
         }
@@ -106,6 +110,9 @@
 }
 
 - (void)dump:(nonnull RSMessage *)message {
+    if (connectionMode != ConnectionModeDevice) {
+        return;
+    }
     if([message.type isEqualToString:@"identify"]) {
         if (![NSThread isMainThread]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -429,6 +436,17 @@
     }
     
     return currValue;
+}
+
+- (ConnectionMode)getConnectionMode:(NSDictionary *)config {
+    NSString *connectionMode = ([config objectForKey:@"connectionMode"]) ? [[NSString stringWithFormat:@"%@", [config objectForKey:@"connectionMode"]] lowercaseString] : @"";
+    if ([connectionMode isEqualToString:@"hybrid"]) {
+        return ConnectionModeHybrid;
+    } else if ([connectionMode isEqualToString:@"device"]) {
+        return ConnectionModeDevice;
+    } else {
+        return ConnectionModeCloud;
+    }
 }
 
 @end
