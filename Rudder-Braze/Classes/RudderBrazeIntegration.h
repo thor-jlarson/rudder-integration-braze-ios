@@ -19,7 +19,25 @@
  
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RudderBrazeIntegration : NSObject<RSIntegration>
+@interface BrazePurchase : NSObject
+
+@property NSString *productId;
+@property int quantity;
+@property NSDecimalNumber *price;
+@property NSMutableDictionary *properties;
+@property NSString *currency;
+
+@end
+
+typedef enum {
+    ConnectionModeHybrid,
+    ConnectionModeCloud,
+    ConnectionModeDevice
+} ConnectionMode;
+
+@interface RudderBrazeIntegration : NSObject<RSIntegration> {
+    ConnectionMode connectionMode;
+}
 
 @property (nonatomic, strong) NSDictionary *config;
 @property (nonatomic, strong) RSClient *client;

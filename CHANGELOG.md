@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0 (2023-04-17)
+
+
+### Features
+
+* added support for hybrid mode ([835e32b](https://github.com/rudderlabs/rudder-integration-braze-ios/commit/835e32b4dd4ab242eeec6e66d68b1d55a30467a5))
+* upgraded Appboy(4.5.4) and Rudder(1.12.0) SDK ([d0dc6f1](https://github.com/rudderlabs/rudder-integration-braze-ios/commit/d0dc6f1bd8805651eebb74d92e13d4026db43153))
+
 ### 1.1.1 (2023-01-17)
 
 
