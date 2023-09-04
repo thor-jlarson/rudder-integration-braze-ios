@@ -17,10 +17,7 @@ extern NSString *const RSBrazeExternalIdKey;
 
 + (instancetype) instance;
 
-- (void) putLaunchOptions:(NSDictionary *)launchOpts;
-- (void) putRemoteNotification:(NSDictionary *)remoteNotif;
-- (void) resetRemoteNotification;
-- (NSDictionary *) getPushPayload ;
+@property RudderBrazeIntegration * __nullable integration;
 
 @end
 
