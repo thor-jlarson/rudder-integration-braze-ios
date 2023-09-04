@@ -6,15 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
-#import <Appboy_iOS_SDK/AppboyKit.h>
-#import <Appboy_iOS_SDK/ABKUser.h>
-#import <Appboy_iOS_SDK/ABKAttributionData.h>
-#else
-#import "Appboy-iOS-SDK/AppboyKit.h"
-#import "Appboy-iOS-SDK/ABKUser.h"
-#import "Appboy-iOS-SDK/ABKAttributionData.h"
-#endif
+@import BrazeKit;
 #import <Rudder/Rudder.h>
  
 NS_ASSUME_NONNULL_BEGIN
@@ -37,6 +29,7 @@ typedef enum {
 
 @interface RudderBrazeIntegration : NSObject<RSIntegration> {
     ConnectionMode connectionMode;
+    Braze *braze;
 }
 
 @property (nonatomic, strong) NSDictionary *config;
@@ -46,6 +39,11 @@ typedef enum {
 
 - (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(RSClient *)client rudderConfig:(nonnull RSConfig *)rudderConfig ;
 
+-(void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+// Following the guidance provided in the Braze documentation at https://www.braze.com/docs/developer_guide/platform_integration_guides/swift/push_notifications/integration/#step-3-enable-push-handling, it is recommended to invoke the push integration code within the main thread of the application.
+- (void)didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+// Following the guidance provided in the Braze documentation at https://www.braze.com/docs/developer_guide/platform_integration_guides/swift/push_notifications/integration/#step-3-enable-push-handling, it is recommended to invoke the push integration code within the main thread of the application.
+- (void)didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

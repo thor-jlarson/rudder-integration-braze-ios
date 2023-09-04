@@ -26,26 +26,8 @@ NSString *const RSBrazeKey = @"Braze";
 }
 
 - (id <RSIntegration>) initiate: (NSDictionary*) config client:(RSClient*) client rudderConfig:(nonnull RSConfig *)rudderConfig{
-    return [[RudderBrazeIntegration alloc] initWithConfig:config withAnalytics:client rudderConfig: rudderConfig];
+    self.integration = [[RudderBrazeIntegration alloc] initWithConfig:config withAnalytics:client rudderConfig: rudderConfig];
+    return self.integration;
 }
 
-- (void) putLaunchOptions:(NSDictionary *)launchOpts {
-  NSDictionary *payload = launchOpts[UIApplicationLaunchOptionsRemoteNotificationKey];
-  if (payload != nil && payload.count > 0) {
-    self.pushPayload = [payload copy];
-  }
-}
-
-- (void) putRemoteNotification:(NSDictionary *)userInfo {
-  self.pushPayload = [userInfo copy];
-}
-
-- (void)resetRemoteNotification{
-    self.pushPayload = @{};
-}
- 
-
-- (NSDictionary *) getPushPayload {
-  return self.pushPayload;
-}
 @end
