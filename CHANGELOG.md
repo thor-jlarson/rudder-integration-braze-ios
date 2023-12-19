@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.4.0 (2023-12-19)
+
+
+### Features
+
+* implement getUnderlyingInstance API in braze integration ([#29](https://github.com/rudderlabs/rudder-integration-braze-ios/issues/29)) ([7782406](https://github.com/rudderlabs/rudder-integration-braze-ios/commit/77824065524a6e0f3ab8a5bd3e0b4f1975390ab2))
+
 ## 1.3.0 (2023-09-04)
 
 
