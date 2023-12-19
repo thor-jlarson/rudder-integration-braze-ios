@@ -12,8 +12,12 @@
 #import "Rudder_Braze_Example-Swift.h"
 #import "RudderBrazeIntegration.h"
 #import <UserNotifications/UserNotifications.h>
+@import BrazeUI;
 
 @implementation RUDDERAppDelegate
+
+// Refer here: https://www.braze.com/docs/developer_guide/platform_integration_guides/swift/initial_sdk_setup/completing_integration/#update-your-app-delegate
+static Braze *braze;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -27,18 +31,37 @@
         NSURL *url = [NSURL fileURLWithPath:path];
         RudderConfig *rudderConfig = [RudderConfig createFrom:url];
         if (rudderConfig != nil) {
+            id<RSIntegrationFactory> brazeFactoryInstance = [RudderBrazeFactory instance];
+            
             RSConfigBuilder *configBuilder = [[RSConfigBuilder alloc] init];
             [configBuilder withDataPlaneUrl:rudderConfig.DEV_DATA_PLANE_URL];
             [configBuilder withLoglevel:RSLogLevelVerbose];
-            [configBuilder withFactory:[RudderBrazeFactory instance]];
+            [configBuilder withFactory:brazeFactoryInstance];
             [configBuilder withTrackLifecycleEvens:NO];
             [configBuilder withSleepTimeOut:3];
             [RSClient getInstance:rudderConfig.WRITE_KEY config:[configBuilder build]];
+            
+            // Braze In-App Message
+            [[RSClient getInstance] onIntegrationReady:brazeFactoryInstance withCallback:^(NSObject *brazeInstance) {
+                if (brazeInstance && [brazeInstance isKindOfClass:[Braze class]]) {
+                    braze = (Braze *)brazeInstance;
+                    [self configureIAM];
+                } else {
+                    NSLog(@"Error getting Braze instance.");
+                }
+            }];
             
             [self registerForPushNotifications:application];
         }
     }
     return YES;
+}
+
+-(void) configureIAM {
+    // Refer here: https://www.braze.com/docs/developer_guide/platform_integration_guides/swift/in-app_messaging/customization/setting_delegates/#setting-the-in-app-message-delegate
+    BrazeInAppMessageUI *inAppMessageUI = [[BrazeInAppMessageUI alloc] init];
+    braze.inAppMessagePresenter = inAppMessageUI;
+    // Make Identify event so that Braze could identify the device and send the IAM.
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

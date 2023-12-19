@@ -3,8 +3,7 @@ require 'json'
 package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 
 braze_kit = '~> 6.6.0'
-rudder_sdk_version = '~> 1.12'
-
+rudder_sdk_version = '~> 1.24'
 Pod::Spec.new do |s|
   s.name             = 'Rudder-Braze'
   s.version          = package['version']
@@ -20,7 +19,7 @@ Rudder is a platform for collecting, storing and routing customer event data to 
   s.source           = { :git => 'https://github.com/rudderlabs/rudder-integration-braze-ios.git', :tag => "v#{s.version}" }
   s.static_framework = true
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '13.0'
   s.source_files = 'Rudder-Braze/Classes/**/*'
 
   if defined?($BrazeKit)
