@@ -11,7 +11,7 @@ More information on RudderStack can be found [here](https://github.com/rudderlab
 2. Rudder-Braze is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Rudder-Braze', '1.0.4'
+pod 'Rudder-Braze', '1.4.0'
 ```
 
 ## Initialize ```RSClient```
@@ -101,6 +101,51 @@ dispatch_async(dispatch_get_main_queue(), ^{
     }
 }
 ```
+
+## Sending In-App Message events
+
+1. Add the following line to your ```Podfile```:
+```ruby
+pod 'BrazeUI'
+```
+
+2. Next, navigate to the directory of your Xcode app project within your terminal and run the following command:
+```
+pod install
+```
+
+3. Import the BrazeUI SDK in your ```AppDelegate.m``` file:
+```
+@import BrazeUI;
+```
+
+4. Next, add a static variable to your ```AppDelegate.m``` file to keep a reference to the Braze instance throughout your application’s lifetime:
+```
+static Braze *braze;
+```
+
+5. Just after the ```Rudder iOS``` SDK initialisation code snippet, add below code in your ```AppDelegate.m``` file:
+```
+id<RSIntegrationFactory> brazeFactoryInstance = [RudderBrazeFactory instance];
+[[RSClient getInstance] onIntegrationReady:brazeFactoryInstance withCallback:^(NSObject *brazeInstance) {
+    if (brazeInstance && [brazeInstance isKindOfClass:[Braze class]]) {
+        braze = (Braze *)brazeInstance;
+        [self configureIAM];
+    } else {
+        NSLog(@"Error getting Braze instance.");
+    }
+}];
+```
+
+6. Add the ```configureIAM``` method in the ```AppDelefate.m``` file:
+```
+-(void) configureIAM {
+    // Refer here: https://www.braze.com/docs/developer_guide/platform_integration_guides/swift/in-app_messaging/customization/setting_delegates/#setting-the-in-app-message-delegate
+    BrazeInAppMessageUI *inAppMessageUI = [[BrazeInAppMessageUI alloc] init];
+    braze.inAppMessagePresenter = inAppMessageUI;
+}
+```
+**Note:** In-App Message support for iOS device mode integration is supported from `Rudder-Braze` version `1.4.0` onwards.
 
 Refer to the [Rudder sample app](https://github.com/rudderlabs/rudder-integration-braze-ios/blob/master/Example/Rudder-Braze/RUDDERAppDelegate.m) for implementation detail.
 
