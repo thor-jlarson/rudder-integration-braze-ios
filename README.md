@@ -145,7 +145,7 @@ id<RSIntegrationFactory> brazeFactoryInstance = [RudderBrazeFactory instance];
     braze.inAppMessagePresenter = inAppMessageUI;
 }
 ```
-**Note:** In-App Message support for iOS device mode integration is supported from `Rudder-Braze` version `2.0.0` onwards.
+**Note:** In-App Message support for iOS device mode integration is supported from `Rudder-Braze` version `1.4.0` onwards.
 
 Refer to the [Rudder sample app](https://github.com/rudderlabs/rudder-integration-braze-ios/blob/master/Example/Rudder-Braze/RUDDERAppDelegate.m) for implementation detail.
 
