@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.2.0 (2024-10-03)
+
+
+### Features
+
+* add spm support for braze integration ([#37](https://github.com/rudderlabs/rudder-integration-braze-ios/issues/37)) ([c4a32fc](https://github.com/rudderlabs/rudder-integration-braze-ios/commit/c4a32fca026ba8f37c5d13e552a50cd20501ea11))
+
 ## 2.1.0 (2024-06-11)
 
 
