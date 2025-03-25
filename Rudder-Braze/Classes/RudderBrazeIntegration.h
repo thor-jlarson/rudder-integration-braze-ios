@@ -7,7 +7,11 @@
 #import <Foundation/Foundation.h>
 
 @import BrazeKit;
-@import Rudder;
+#if defined(__has_include) && __has_include(<Rudder/Rudder.h>)
+#import <Rudder/Rudder.h>
+#else
+#import "Rudder.h"
+#endif
  
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,6 +39,7 @@ typedef enum {
 @property (nonatomic, strong) RSClient *client;
 @property (nonatomic) BOOL supportDedup;
 @property (nonatomic, strong) RSMessage *previousIdentifyElement;
+@property (nonatomic) NSString *prevExternalId;
 
 - (instancetype)initWithConfig:(NSDictionary *)config withAnalytics:(RSClient *)client rudderConfig:(nonnull RSConfig *)rudderConfig ;
 

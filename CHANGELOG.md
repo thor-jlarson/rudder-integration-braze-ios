@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 3.0.0 (2025-03-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* correct the setting of externalId and userId (#44)
+
+### Bug Fixes
+
+* correct the setting of externalId and userId ([#44](https://github.com/rudderlabs/rudder-integration-braze-ios/issues/44)) ([9437032](https://github.com/rudderlabs/rudder-integration-braze-ios/commit/943703224da737d442ee84707b11bf7654069fe3))
+
 ## 2.2.0 (2024-10-03)
 
 
