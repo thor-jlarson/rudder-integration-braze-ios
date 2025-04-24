@@ -83,8 +83,13 @@ static Braze *rsBrazeInstance;
         }
 
         rsBrazeInstance = [[Braze alloc] initWithConfiguration:configuration];
+        [self setUserAlias:client.getAnonymousId];
     }
     return self;
+}
+
+- (void) setUserAlias:(NSString *)anonymousId {
+    [rsBrazeInstance.user addAlias:anonymousId label:@"rudder_id"];
 }
 
 - (id) getUnderlyingInstance {
